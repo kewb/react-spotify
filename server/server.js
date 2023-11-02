@@ -8,9 +8,28 @@ app.use(cors())
 // const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URL_AFTER_LOGIN } = require('../src/auth');
 
 
-app.post('/refresh', (req,res) => {
-const refreshToken = req.body.refreshToken
-})
+app.post("/refresh", (req, res) => {
+  const refreshToken = req.body.refreshToken;
+  const spotifyApi = new spotifyWebApi({
+    redirectUri: 'http://localhost:3000/',
+    clientId: '4ecb8bef7c0048c2b086bd189b368941',
+    clientSecret: 'c7cc906641ee45479561ce92eea16a79',
+    refreshToken: refreshToken,
+  });
+
+  spotifyApi.refreshAccessToken()
+    .then(data => {
+      res.json({
+        accessToken: data.body.access_token,
+        expiresIn: data.body.expires_in,
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(400);
+    });
+});
+
 
 app.post('/login', (req, res) => {
     const code = req.body.code;

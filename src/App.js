@@ -8,7 +8,7 @@ const urlSearchParams = new URLSearchParams(fragment.slice(1)); // Remove the '#
 const code = new URLSearchParams(window.location.search).get("code")
 // const code = urlSearchParams.get('code');
 
-
+console.log(code)
 function App() {
   return code ? <Dashboard code={code}/> : <Login/>
 }
