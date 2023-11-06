@@ -11,7 +11,8 @@ const SPACE_DELIMITER = "%20";
 const SCOPES = ['user-read-email','user-read-playback-state','user-follow-read','user-read-recently-played', 'user-library-read', 'user-read-private', 'playlist-read-private', 'playlist-read-collaborative', 'user-top-read','user-read-currently-playing'];
 
 const SCOPES_URL_PARAM = SCOPES.join(SPACE_DELIMITER);
-    const AUTH_URL = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URL_AFTER_LOGIN}&scope=${SCOPES_URL_PARAM}&show_dialog=true`;
+const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=4ecb8bef7c0048c2b086bd189b368941&response_type=code&redirect_uri=http://localhost:3000/&scope=${SCOPES_URL_PARAM}&show_dialog=true`;
+// const AUTH_URL = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URL_AFTER_LOGIN}&scope=${SCOPES_URL_PARAM}&show_dialog=true`;
 export default function Login() {
   return <Container 
   className='d-flex justify-content-center align-items-center'
