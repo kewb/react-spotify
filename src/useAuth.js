@@ -18,7 +18,7 @@ export default function useAuth(code) {
         window.history.pushState({}, null, "/"); // remove all extra code section at the end of url
       })
       .catch(() => {
-        // window.location = "/"; // redirect back to login page
+         window.location = "/"; // redirect back to login page
       });
   }, [code]);
 
