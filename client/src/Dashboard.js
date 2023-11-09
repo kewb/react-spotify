@@ -11,7 +11,7 @@ import {
 } from './auth'
 
 const spotifyApi = new SpotifyWebApi({
-    clientId: CLIENT_ID,
+    clientId: "4ecb8bef7c0048c2b086bd189b368941",
 });
 
 export default function Dashboard({ code }) {
@@ -25,7 +25,7 @@ export default function Dashboard({ code }) {
     useEffect(() => {
         if (accessToken) {
             const api = new SpotifyWebApi({
-                clientId: CLIENT_ID,
+                clientId: "4ecb8bef7c0048c2b086bd189b368941",
                 accessToken: accessToken,
             });
 
@@ -51,7 +51,12 @@ export default function Dashboard({ code }) {
         <div>
             <div>{nowPlaying.name}</div>
             {nowPlaying.albumImageUrl && (
-                <img src={nowPlaying.albumImageUrl} alt="Album Cover" />
+                <img           
+                style={{
+                    resizeMode: 'contain',
+                    height: 200,
+                    width: 200,
+                  }} src={nowPlaying.albumImageUrl} alt="Album Cover" />
             )}
             <div>{nowPlaying.artistName}</div>
         </div>
