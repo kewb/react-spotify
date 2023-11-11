@@ -21,11 +21,25 @@ const refreshAccessToken = async () => {
     const { access_token } = data;
     setLocalAccessToken(access_token);
     window.location.reload();
-    return;
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error("Error refreshing access token:", error);
+
+    // Handle the error appropriately, for example, redirect the user to the login page.
+    if (error.response) {
+      // The request was made, but the server responded with an error status code
+      console.error("Server responded with status:", error.response.status);
+    } else if (error.request) {
+      // The request was made, but no response was received
+      console.error("No response received from the server");
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error("Error setting up the request:", error.message);
+    }
+
+    throw error;
   }
 };
+
 
 // Get access token off of query params (called on application init)
 export const getAccessToken = () => {

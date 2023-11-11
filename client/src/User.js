@@ -27,18 +27,45 @@ export default function User() {
       };
       catchErrors(fetchData());
     }, []);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        const { data } = await getMyCurrentPlayingTrack();
+        const track = data.item;
+        const albumImageUrl = track.album.images[0].url;
+        const artistName = track.artists[0].name;
+
+        setNowPlaying({
+            name: track.name,
+            albumImageUrl: albumImageUrl,
+            artistName: artistName
+        });
+      console.log(data);
+
+      };
+      catchErrors(fetchData());
+    }, []);
+
+
+
   
     // Render data from the fetched information
     return (
       <div>
         <p>User: {user ? user.display_name : 'Loading...'}</p>
         <p>Total Playlists: {playlists ? playlists.total : 0}</p>
-  
-        {/* Render other data as needed */}
-        <p>Followed Artists: {followedArtists ? followedArtists.length : 0}</p>
-        <p>Top Artists: {topArtists ? topArtists.length : 0}</p>
-        <p>Top Tracks: {topTracks ? topTracks.length : 0}</p>
+    
+        <div>
+          <div>
+            <div>{nowPlaying.name}</div>
+            {nowPlaying.albumImageUrl && (
+              <img src={nowPlaying.albumImageUrl} alt="Album Cover" />
+            )}
+            <div>{nowPlaying.artistName}</div>
+          </div>
+        </div>
       </div>
     );
+    
   }
   
