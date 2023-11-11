@@ -1,50 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { getPlaylists } from "../../spotify";
+import { getPlaylists, getPlaylist } from "../../spotify";
 import { catchErrors } from "../../utils";
 import "bootstrap/dist/css/bootstrap.css";
 import styled from "styled-components";
-import './styles.css'; // Import the CSS file
+import './styles.scss'; // Import the CSS file
 
 
 
 export default function Sidebar() {
+  const [playlistsData, setPlaylists] = useState([]);
+  useEffect(() => {
+    const fetchData = async() => {
+      const {data} = await getPlaylists();
+      setPlaylists(data.items);
+    };
+    catchErrors(fetchData());
+  }, []);
+  
+  const playlistList = playlistsData.map((item, index) => (
+    <div className="sidebar-info" data-index={index} key={index}>
+      <img src={item.images[0].url} alt={item.images[0].url} />
+      <div className="sidebar-playlist-info">
+        <h3 className="sidebar-playlist-name">{item.name}</h3>
+        <p className="sidebar-playlist-owner">{item.owner.display_name} - {item.type}</p>
+      </div>
+    </div>
+  ));
+
   return (
     <div>
       <div id="sidebar-playlist">
         <div className="blurry-card ">
-          <div className="sidebar-info">
-              <img
-                className="img-fluid"
-                src="https://i.scdn.co/image/ab67757000003b82f5b898d69ffe69e2a656fb44"
-                alt=""
-              />
-              <div className="playlist-info">
-                <div className="sidebar-playlist-name">Boujee</div>
-                <div className="sidebar-playlist-owner">Boujee</div>
-              </div>
-          </div>
-          <div className="sidebar-info">
-              <img
-                className="img-fluid"
-                src="https://i.scdn.co/image/ab67757000003b82f5b898d69ffe69e2a656fb44"
-                alt=""
-              />
-              <div className="playlist-info">
-                <div className="sidebar-playlist-name">Boujee</div>
-                <div className="sidebar-playlist-owner">Boujee</div>
-              </div>
-          </div>
-          <div className="sidebar-info">
-              <img
-                className="img-fluid"
-                src="https://i.scdn.co/image/ab67757000003b82f5b898d69ffe69e2a656fb44"
-                alt=""
-              />
-              <div className="playlist-info">
-                <div className="sidebar-playlist-name">Boujee</div>
-                <div className="sidebar-playlist-owner">Boujee</div>
-              </div>
-          </div>
+          <div>{playlistList}</div>
         </div>
       </div>
     </div>
