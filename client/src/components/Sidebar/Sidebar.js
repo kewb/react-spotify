@@ -17,14 +17,14 @@ export default function Sidebar() {
         if (data.items && data.items.length > 0) {
           setPlaylists(data.items);
           const firstPlaylistInfo = await getPlaylist(data.items[0].id); // Fix the function call
-          setSelectedPlaylist(firstPlaylistInfo.data); 
+          setSelectedPlaylist(firstPlaylistInfo.data);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchData(); 
+    fetchData();
   }, []);
 
   async function handleClick(id) {
@@ -50,7 +50,7 @@ export default function Sidebar() {
       </div>
     </div>
   ));
- 
+
   return (
     <div style={{ display: "flex" }}>
       <div id="sidebar-playlist">
@@ -58,9 +58,9 @@ export default function Sidebar() {
           <div>{playlistList}</div>
         </div>
       </div>
-      <PlaylistInfo playlist={selectedPlaylist} />
+      <div className="px-3">
+        <PlaylistInfo playlist={selectedPlaylist} />
+      </div>
     </div>
-
-    
   );
 }

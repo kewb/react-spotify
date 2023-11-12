@@ -1,31 +1,32 @@
-
 .blurry-card {
-    background-color: #05040440;
-    backdrop-filter: blur(40px);
-    border-radius: 20px;
-    width: 500px;
-    max-height: 100%;
-    height: 800px;
-    overflow: auto;
-    margin-left: 10px;
-    flex-wrap: wrap;
+  background-color: #05040440;
+  backdrop-filter: blur(40px);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 900px; /* Adjust the max-width as needed */
+  height: 800px;
+  overflow: auto;
+  padding: 20px; /* Add padding for better spacing */
 
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  &::-webkit-scrollbar {
+    display: none;
   }
+}
 
-  .playListSongs img {
-    width: 75px;
-    border-radius: 10px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-
+.albumThumbnail {
+  width: 200px;
+}
+.playListSongs img {
+  width: 100%; /* Make the image responsive */
+  max-width: 75px; /* Set a maximum width */
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .playlist-song-name {
-    color: rgb(199, 157, 238);
-    font-size: 1.3rem;
-    font-weight: bold;
+  color: rgb(199, 157, 238);
+  font-size: 1.3rem;
+  font-weight: bold;
 }
+
+/* Add additional styles for responsiveness if needed */
