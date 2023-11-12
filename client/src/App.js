@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import Login from './Login';
+import Login from "./Login";
 import Dashboard from "./Dashboard";
-import User from './User';
-import { token } from './spotify';
-
+import User from "./User";
+import { token } from "./spotify";
 
 export default function App() {
-  const [accessToken, setAccessToken] = useState('');
+  const [accessToken, setAccessToken] = useState("");
 
   useEffect(() => {
     setAccessToken(token);
@@ -16,4 +15,3 @@ export default function App() {
 
   return accessToken ? <User /> : <Login />;
 }
-

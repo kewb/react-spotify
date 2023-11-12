@@ -21,22 +21,10 @@ const refreshAccessToken = async () => {
     const { access_token } = data;
     setLocalAccessToken(access_token);
     window.location.reload();
+    return access_token;
   } catch (error) {
     console.error("Error refreshing access token:", error);
-
-    // Handle the error appropriately, for example, redirect the user to the login page.
-    if (error.response) {
-      // The request was made, but the server responded with an error status code
-      console.error("Server responded with status:", error.response.status);
-    } else if (error.request) {
-      // The request was made, but no response was received
-      console.error("No response received from the server");
-    } else {
-      // Something happened in setting up the request that triggered an Error
-      console.error("Error setting up the request:", error.message);
-    }
-
-    throw error;
+    throw error; // Re-throw the error to handle it at the calling site
   }
 };
 
@@ -57,6 +45,7 @@ export const getAccessToken = () => {
   }
 
   const localAccessToken = getLocalAccessToken();
+
 
   // If there is no ACCESS token in local storage, set it and return `access_token` from params
   if ((!localAccessToken || localAccessToken === 'undefined') && access_token) {
@@ -83,6 +72,9 @@ const headers = {
   Authorization: `Bearer ${token}`,
   'Content-Type': 'application/json',
 };
+
+
+
 
 /**
  * Get Current User's Profile
@@ -115,7 +107,7 @@ export const getRecentlyPlayed = () =>
  * Get a List of Current User's Playlists
  * https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/
  */
-export const getPlaylists = () => axios.get('https://api.spotify.com/v1/me/playlists', { headers });
+export const getPlaylists = () => axios.get('https://api.spotify.com/v1/me/playlists?limit=50', { headers });
 
 /**
  * Get a User's Top Artists

@@ -13,6 +13,7 @@
     "react-bootstrap": "^2.9.1",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
+    "sass": "^1.69.5",
     "spotify-web-api-node": "^5.0.2",
     "styled": "^1.0.0",
     "styled-components": "^6.1.1",
