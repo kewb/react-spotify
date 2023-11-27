@@ -6,7 +6,9 @@ import SpotifyWebApi from "spotify-web-api-node";
 import "bootstrap/dist/css/bootstrap.css";
 import styled from "styled-components";
 import TopAlbums from "../TopAlbums/TopAlbums";
+
 import "./styles.scss"; // Import the CSS file
+import { MeshGradientRenderer } from "@johnn-e/react-mesh-gradient";
 
 export default function User() {
   const [user, setUser] = useState(null);

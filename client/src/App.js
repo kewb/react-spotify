@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 import User from "./components/User/User";
 import { token } from "./spotify";
 import Sidebar from "./components/Sidebar/Sidebar";
+import { MeshGradientRenderer } from "@johnn-e/react-mesh-gradient";
 
 export default function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -15,11 +16,15 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-secondary bg-gradient">
+    <div className="">
       {accessToken ? <User /> : <Login />}
       <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
         <div>
           <Sidebar />
+          <MeshGradientRenderer
+            className="gradient"
+            colors={["#C3E4FF", "#6EC3F4", "#EAE2FF", "#B9BEFF", "#B3B8F9"]}
+          />
         </div>
       </div>
     </div>
