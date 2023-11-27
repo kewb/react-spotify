@@ -21,32 +21,31 @@ const PlaylistInfo = ({ playlist }) => {
   });
 
   const playlistsData = songs.map((song, index) => (
-<div key={index} className="container">
-  <div className="clickable-song playListSongs row">
-    <div className="col-auto">
-      <div>
-        <img src={song.thumbnail} alt={song.name} className="img-fluid" />
+    <div key={index} className="container">
+      <div className="clickable-song playListSongs row">
+        <div className="col-auto">
+          <div>
+            <img src={song.thumbnail} alt={song.name} className="img-fluid" />
+          </div>
+        </div>
+        <div className="col d-block">
+          <div className="playlist-song-info">
+            <div className="playlist-song-name">{song.name}</div>
+            <div className="playlist-song-artist">{song.artist}</div>
+          </div>
+        </div>
+        <div className="col d-none d-lg-block">
+          <div className="text-start">
+            <p className="ad-details">{song.dateAdded}</p>
+          </div>
+        </div>
+        <div className="col d-block">
+          <div className="text-end">
+            <p className="ad-details">{song.duration}</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div className="col d-block">
-      <div className="playlist-song-info">
-        <div className="playlist-song-name">{song.name}</div>
-        <div className="playlist-song-artist">{song.artist}</div>
-      </div>
-    </div>
-    <div className="col d-none d-lg-block d-xl-none">
-      <div className="text-start">
-        <p className="ad-details">{song.dateAdded}</p>
-      </div>
-    </div>
-    <div className="col d-block">
-      <div className="text-end">
-        <p className="ad-details">{song.duration}</p>
-      </div>
-    </div>
-  </div>
-</div>
-
   ));
 
   return (

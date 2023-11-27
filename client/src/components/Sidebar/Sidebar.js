@@ -5,6 +5,7 @@ import PlaylistInfo from "../PlaylistInfo/PlaylistInfo";
 import "bootstrap/dist/css/bootstrap.css";
 import styled from "styled-components";
 import "./styles.scss"; // Import the CSS file
+import TopAlbums from "../TopAlbums/TopAlbums";
 
 export default function Sidebar() {
   const [playlistsData, setPlaylists] = useState([]);
@@ -52,13 +53,13 @@ export default function Sidebar() {
   ));
 
   return (
-    <div style={{ display: "flex" }}>
-      <div id="sidebar-playlist">
-        <div className="blurry-card mh-100">
+    <div className="d-flex flex-column flex-sm-row">
+      <div id="sidebar-playlist" className="order-1 order-sm-0 mb-3 mb-sm-0">
+        <div className="blurry-card">
           <div>{playlistList}</div>
         </div>
       </div>
-      <div className="px-3">
+      <div className="px-3 order-0 order-sm-1">
         <PlaylistInfo playlist={selectedPlaylist} />
       </div>
     </div>
