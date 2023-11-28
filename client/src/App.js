@@ -17,14 +17,14 @@ export default function App() {
 
   return (
     <div className="">
+      <MeshGradientRenderer
+        className="gradient w-100 h-100"
+        colors={["#C3E4FF", "#6EC3F4", "#EAE2FF", "#B9BEFF", "#B3B8F9"]}
+      />
       {accessToken ? <User /> : <Login />}
       <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
         <div>
-          <Sidebar />
-          <MeshGradientRenderer
-            className="gradient"
-            colors={["#C3E4FF", "#6EC3F4", "#EAE2FF", "#B9BEFF", "#B3B8F9"]}
-          />
+          {/* <Sidebar /> */}
         </div>
       </div>
     </div>

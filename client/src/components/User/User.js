@@ -85,11 +85,38 @@ export default function User() {
   // Render data from the fetched information
   return (
     <div className="bg-dark-gray">
-      <div className="d-flex justify-content-between confined bg-gray px-2">
+      <nav className="navbar navbar-expand-lg sticky-top confined">
+        <div className="container">
+          <a className="navbar-brand" href="#">
+            <img src="./spotify.svg" alt="Logo" width="100" height="20" />
+          </a>
+
+          <div className="d-flex align-items-center ml-auto">
+            <form className="d-flex" role="search">
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button className="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+            <img
+              className="user-img-sm mr-3"
+              src={user ? user.images[1].url : "Image"}
+              alt=""
+            />
+          </div>
+        </div>
+      </nav>
+
+      <div className="d-flex justify-content-between confined px-2">
         {" "}
         <div className="d-flex align-items-center">
           <img
-            className="user-img mr-3 "
+            className="user-img-big mr-3 "
             src={user ? user.images[1].url : "Image"}
             alt=""
           />
@@ -109,15 +136,16 @@ export default function User() {
             <div>{nowPlaying.artistName}</div>
           </div>
         </div>
-
       </div>
       <div className="confined d-flex align-items-end overflow-auto justify gap-3 py-1 ">
-          <a className="border-bottom border-3 text-decoration-none fw-bold">Overview</a>
-          <a className="text-decoration-none fw-bold">Songs</a>
-          <a className="text-decoration-none fw-bold">Artists</a>
-          <a className="text-decoration-none fw-bold">Albums</a>
-          <a className="text-decoration-none fw-bold">Genres</a>
-        </div>
+        <a className="border-bottom border-3 text-decoration-none fw-bold">
+          Overview
+        </a>
+        <a className="text-decoration-none fw-bold">Songs</a>
+        <a className="text-decoration-none fw-bold">Artists</a>
+        <a className="text-decoration-none fw-bold">Albums</a>
+        <a className="text-decoration-none fw-bold">Genres</a>
+      </div>
     </div>
   );
 }
