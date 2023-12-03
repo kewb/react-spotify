@@ -1,0 +1,30 @@
+#timeline {
+  display: grid;
+  color: white;
+  font-size: 1rem;
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  width: max-content;
+  grid-auto-flow: column;
+  border-radius: 1rem;
+  background-color: #05040440;
+  padding: 0.675rem;
+  gap: 1rem;
+
+  .timeline-button {
+    cursor: pointer;
+
+    &:hover {
+      color: #64c284;
+    }
+
+    &.short_term:hover {
+      color: #c29664;
+    }
+  }
+
+  &.active {
+    color: rgb(134, 224, 149);
+  }
+}
