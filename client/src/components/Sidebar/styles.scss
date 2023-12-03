@@ -1,8 +1,6 @@
 #sidebar-playlist {
   display: flex;
   flex-direction: column;
-  left: 0%;
-  top: 1%;
   overflow: auto;
   margin-left: 10px;
   font-size: 1.2rem;
@@ -33,7 +31,7 @@
   transition: 0.2ms ease-in;
 
   &:hover {
-    background-color: rgba(218, 22, 22, 0.187);
+    background-color: rgba(220, 211, 211, 0.187);
     border-radius: 10px;
     cursor: pointer;
     transition: 0.2ms ease-in;
@@ -52,7 +50,7 @@
 
   .sidebar-playlist-name {
     font-weight: lighter;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 1rem;
     margin: 0;
   }
@@ -61,7 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: rgb(0, 0, 0);
+    color: rgb(199, 199, 199);
     font-size: 1rem;
     margin-bottom: 10px; // Adjusted margin
   }

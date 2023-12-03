@@ -84,11 +84,11 @@ export default function User() {
 
   // Render data from the fetched information
   return (
-    <div className="bg-dark-gray">
-      <nav className="navbar navbar-expand-lg sticky-top confined">
+    <div className="bg-dark-gray position-relative">
+      <nav className="navbar navbar-expand-lg  confined">
         <div className="container">
           <a className="navbar-brand" href="#">
-            <img src="./spotify.svg" alt="Logo" width="100" height="20" />
+            <img src="./spotify.svg" alt="Logo" width="100" height="auto" />
           </a>
 
           <div className="d-flex align-items-center ml-auto">
@@ -104,7 +104,7 @@ export default function User() {
               </button>
             </form>
             <img
-              className="user-img-sm mr-3"
+              className="user-img-sm"
               src={user ? user.images[1].url : "Image"}
               alt=""
             />
@@ -112,7 +112,7 @@ export default function User() {
         </div>
       </nav>
 
-      <div className="d-flex justify-content-between confined px-2">
+      <div className="d-flex justify-content-between align-items-center confined">
         {" "}
         <div className="d-flex align-items-center">
           <img
@@ -120,10 +120,12 @@ export default function User() {
             src={user ? user.images[1].url : "Image"}
             alt=""
           />
-          <p className="mb-2 ml-1">{user ? user.display_name : "Loading..."}</p>
+          <div className="ms-3 h1 text-white ">{user ? user.display_name : "Loading..."}</div>
         </div>
-        <div className="d-flex align-items-center">
-          <p>Now Playing</p>
+        <div
+          className="d-flex blurry-card align-items-center"
+          style={{ width: "auto", height: "100px", backgroundColor: "#22c55e" }}
+        >
           {nowPlaying.albumImageUrl && (
             <img
               className="mr-3 def-image"
@@ -131,9 +133,14 @@ export default function User() {
               alt="Album Cover"
             />
           )}
-          <div>
-            <div className="w-75 mb-1">{nowPlaying.name}</div>
+          <div className="ms-2">
+            <div className="w-100 mb-1">{nowPlaying.name}</div>
             <div>{nowPlaying.artistName}</div>
+          </div>
+          <div className="ms-2 bars">
+            <div className="bars__item"></div>
+            <div className="bars__item"></div>
+            <div className="bars__item"></div>
           </div>
         </div>
       </div>

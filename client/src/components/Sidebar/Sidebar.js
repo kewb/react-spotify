@@ -43,7 +43,7 @@ export default function Sidebar() {
       key={index}
     >
       <img src={item.images[0].url} alt={item.images[0].url} />
-      <div className="sidebar-playlist-info">
+      <div className="sidebar-playlist-info text-white">
         <h3 className="sidebar-playlist-name">{item.name}</h3>
         <p className="sidebar-playlist-owner">
           {item.owner.display_name} - {item.type}
@@ -54,7 +54,7 @@ export default function Sidebar() {
 
   return (
     <div className="d-flex flex-column flex-sm-row">
-      <div id="sidebar-playlist" className="order-1 order-sm-0 mb-3 mb-sm-0">
+  <div id="sidebar-playlist" className="order-1 order-sm-0 mb-3 mb-sm-0 flex-grow-1">
         <div className="blurry-card">
           <div>{playlistList}</div>
         </div>
