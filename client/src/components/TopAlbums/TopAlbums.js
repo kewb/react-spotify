@@ -6,7 +6,7 @@ export default function TopAlbums() {
     <div id="top-albums">
       {" "}
       <div className="blurry-card">
-        <div>TopAlbums</div>
+        <div>Top Albums</div>
       </div>
       
     </div>
