@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import styled from "styled-components";
 import TopAlbums from "../TopAlbums/TopAlbums";
 
-import "./styles.scss"; // Import the CSS file
+import "./styles.scss"; 
 import { MeshGradientRenderer } from "@johnn-e/react-mesh-gradient";
 
 export default function User() {
@@ -48,12 +48,13 @@ export default function User() {
           // Check if album and images properties exist
           if (track.album && track.album.images && track.album.images[1]) {
             const albumImageUrl = track.album.images[1].url;
-            const artistName = track.artists[0].name;
+            // const artistName = track.artists[0].name;
+            const artistName = track.artists;
 
             setNowPlaying({
               name: track.name,
               albumImageUrl: albumImageUrl,
-              artistName: artistName,
+              artistName: artistName.map((artist) => artist.name).join(" / ")
             });
           } else {
             // Handle the case where album or images properties are missing
@@ -120,7 +121,9 @@ export default function User() {
             src={user ? user.images[1].url : "Image"}
             alt=""
           />
-          <div className="ms-3 h1 text-white ">{user ? user.display_name : "Loading..."}</div>
+          <div className="ms-3 h1 text-white ">
+            {user ? user.display_name : "Loading..."}
+          </div>
         </div>
         <div
           className="d-flex blurry-card align-items-center"
@@ -133,9 +136,9 @@ export default function User() {
               alt="Album Cover"
             />
           )}
-          <div className="ms-2">
-            <div className="w-100 mb-1">{nowPlaying.name}</div>
-            <div>{nowPlaying.artistName}</div>
+          <div className="ms-2 w-100">
+            <div className="">{nowPlaying.name}</div>
+            <div className="d-flex flex-row">{nowPlaying.artistName}</div>
           </div>
           <div className="ms-2 bars">
             <div className="bars__item"></div>

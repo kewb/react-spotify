@@ -1,5 +1,8 @@
-// #top-artists {
-//     .blurry-card {
-//         width: 300px;
-//     }
-// }
+.artist-img {
+    margin-left: 5px;
+    width: 100px;
+    height: 100px;
+    clip-path: circle();
+    cursor: pointer;
+  }
+  

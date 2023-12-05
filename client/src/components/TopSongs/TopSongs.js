@@ -36,15 +36,19 @@ export default function TopSongs() {
     ? topTracks.map((item, index) => (
         <div className="d-flex align-items-center" key={item.id}>
           <img
-            className="w-25 p-2 h-auto"
+            className="w-25 p-2 h-auto rounded-2"
             src={item.album.images[0].url}
             alt={item.name}
           />
+
           <div className="d-flex flex-column">
             <div>{item.name}</div>
             <div className="d-flex flex-row gap-1">
               {item.artists.map((artist, index) => (
-                <div key={index}>{artist.name}</div>
+                <div key={index}>
+                  {artist.name}
+                  {index < item.artists.length - 1 ? " / " : ""}
+                </div>
               ))}
             </div>
           </div>
@@ -57,7 +61,7 @@ export default function TopSongs() {
   return (
     <div className="blurry-card">
       <Timeline
-        className="d-flex justify-content-end"
+        className=""
         onChangeRange={changeRange}
       ></Timeline>
       <div>{topTracksElem}</div>

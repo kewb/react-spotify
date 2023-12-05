@@ -35,7 +35,11 @@ export default function App() {
       </div>
 
       <div className="container-fluid d-flex justify-content-center text-white">
-        <div>{/* <Sidebar /> */}</div>
+        {/* <div><Sidebar /></div> */}
+      </div>
+
+      <div style={{ height: "40px" }}>
+        <div className="h-25"></div> {/*Spacing between elems*/}
       </div>
 
       <div className="container-fluid d-flex justify-content-center">
