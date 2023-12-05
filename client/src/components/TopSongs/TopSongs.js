@@ -20,11 +20,21 @@ export default function TopSongs() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await getTopTracksLong();
+      const { data } = await apiCalls[activeRange]();
       setTopTracks(data.items);
     };
     catchErrors(fetchData);
+  }, [activeRange]);
+
+  const fetchData = async (range) => {
+    const { data } = await apiCalls[range]();
+    setTopTracks(data.items);
+  };
+  
+  useEffect(() => {
+    fetchData(activeRange);
   }, []);
+  
 
   const changeRange = async (range) => {
     const { data } = await apiCalls[range]();
@@ -35,8 +45,11 @@ export default function TopSongs() {
   const topTracksElem = topTracks
     ? topTracks.map((item, index) => (
         <div className="d-flex align-items-center" key={item.id}>
+          <div className="index" style={{ width: "20px" }}>
+            {index + 1}
+          </div>
           <img
-            className="w-25 p-2 h-auto rounded-2"
+            className="top-song-img m-1 h-auto rounded"
             src={item.album.images[0].url}
             alt={item.name}
           />
@@ -44,10 +57,10 @@ export default function TopSongs() {
           <div className="d-flex flex-column">
             <div>{item.name}</div>
             <div className="d-flex flex-row gap-1">
-              {item.artists.map((artist, index) => (
-                <div key={index}>
+              {item.artists.map((artist, artistIndex) => (
+                <div key={artistIndex}>
                   {artist.name}
-                  {index < item.artists.length - 1 ? " / " : ""}
+                  {artistIndex < item.artists.length - 1 ? " / " : ""}
                 </div>
               ))}
             </div>
@@ -56,14 +69,10 @@ export default function TopSongs() {
       ))
     : null;
 
-  console.log(activeRange);
 
   return (
-    <div className="blurry-card">
-      <Timeline
-        className=""
-        onChangeRange={changeRange}
-      ></Timeline>
+    <div className="blurry-card text-white mb-2">
+      <Timeline className="" onChangeRange={changeRange}></Timeline>
       <div>{topTracksElem}</div>
     </div>
   );

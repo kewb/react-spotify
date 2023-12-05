@@ -9,7 +9,7 @@ import {
 import { catchErrors } from "../../utils";
 
 export default function TopArtists() {
-  const [topArtists, setTopArtists] = useState(null);
+  const [topArtists, setTopArtists] = useState([]);
   const [activeRange, setActiveRange] = useState("long");
 
   const apiCalls = {
@@ -19,10 +19,19 @@ export default function TopArtists() {
   };
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await getTopArtistsLong();
+      const { data } = await apiCalls[activeRange]();
       setTopArtists(data.items);
     };
     catchErrors(fetchData);
+  }, [activeRange]);
+
+  const fetchData = async (range) => {
+    const { data } = await apiCalls[range]();
+    setTopArtists(data.items);
+  };
+
+  useEffect(() => {
+    fetchData(activeRange);
   }, []);
 
   const changeRange = async (range) => {
@@ -31,26 +40,31 @@ export default function TopArtists() {
     setActiveRange(range);
   };
 
-  const topArtistsElem = topArtists
-    ? topArtists.map((item, index) => (
-        <div className="d-flex align-items-center" key={item.id}>
-          <div>{index + 1}</div>
-          <img
-            className="artist-img m-2"
-            src={item.images[1].url}
-            alt={item.name}
-          />
+  const topArtistsElem = topArtists ? (
+    topArtists.map((item, index) => (
+      <div className="d-flex align-items-center" key={item.id}>
+        <div>{index + 1}</div>
+        <img
+          className="artist-img m-2"
+          src={item.images[1].url}
+          alt={item.name}
+        />
 
-          <div className="d-flex align-items-center">
-            <div>{item.name}</div>
-          </div>
+        <div className="d-flex align-items-center">
+          <div>{item.name}</div>
         </div>
-      ))
-    : null;
+      </div>
+    ))
+  ) : (
+    <div>Loading...</div>
+  );
   return (
-    <div className="blurry-card">
-      <Timeline className="" onChangeRange={changeRange}></Timeline>
-      <div className="text-white">{topArtistsElem}</div>
+    <div id="top-artists">
+      {" "}
+      <div className="blurry-card">
+        <Timeline className="" onChangeRange={changeRange}></Timeline>
+        <div className="text-white">{topArtistsElem}</div>
+      </div>
     </div>
   );
 }

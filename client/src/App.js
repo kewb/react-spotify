@@ -35,15 +35,21 @@ export default function App() {
       </div>
 
       <div className="container-fluid d-flex justify-content-center text-white">
-        {/* <div><Sidebar /></div> */}
+        <div>
+          {/* <Sidebar /> */}
+        </div>
       </div>
 
       <div style={{ height: "40px" }}>
         <div className="h-25"></div> {/*Spacing between elems*/}
       </div>
 
-      <div className="container-fluid d-flex justify-content-center">
+      <div className="container-fluid d-flex flex-column flex-sm-row justify-content-center ">
         {accessToken ? <TopSongs /> : null}
+        <div style={{ width: "30px" }}>
+          <div className="w-25"></div> {/*Spacing between elems*/}
+        </div>
+        {accessToken ? <TopArtists /> : null}
       </div>
 
       <div style={{ height: "40px" }}>
@@ -51,7 +57,7 @@ export default function App() {
       </div>
 
       <div className="container-fluid d-flex justify-content-center">
-        {accessToken ? <TopArtists /> : null}
+        {/* {accessToken ? <TopArtists /> : null} */}
       </div>
 
       <div className="position-fixed bottom-0 end-0 p-3" id="color-toggle">
