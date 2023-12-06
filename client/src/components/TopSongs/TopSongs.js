@@ -30,11 +30,10 @@ export default function TopSongs() {
     const { data } = await apiCalls[range]();
     setTopTracks(data.items);
   };
-  
+
   useEffect(() => {
     fetchData(activeRange);
   }, []);
-  
 
   const changeRange = async (range) => {
     const { data } = await apiCalls[range]();
@@ -69,11 +68,13 @@ export default function TopSongs() {
       ))
     : null;
 
-
   return (
-    <div className="blurry-card text-white mb-2">
-      <Timeline className="" onChangeRange={changeRange}></Timeline>
-      <div>{topTracksElem}</div>
+    <div id="top-songs-container">
+      <div className="blurry-card mb-2">
+        <div className="title px-3">TOP SONGS</div>
+        <Timeline className="" onChangeRange={changeRange}></Timeline>
+        <div>{topTracksElem}</div>
+      </div>
     </div>
   );
 }

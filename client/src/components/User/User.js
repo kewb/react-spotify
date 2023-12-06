@@ -31,7 +31,7 @@ export default function User() {
       setPlaylists(playlists);
       setTopArtists(topArtists);
       setTopTracks(topTracks);
-      console.log(user);
+      // console.log(user);
     };
     catchErrors(fetchData());
   }, []);
@@ -73,7 +73,7 @@ export default function User() {
           });
         }
 
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         // Handle errors here
         console.error("Error fetching current playing track:", error);

@@ -12,6 +12,7 @@ import TopAlbums from "./components/TopAlbums/TopAlbums";
 import TopSongs from "./components/TopSongs/TopSongs";
 import TopArtists from "./components/TopArtists/TopArtists";
 import Timeline from "./components/Timeline/Timeline";
+import History from "./components/History/History";
 export default function App() {
   const [accessToken, setAccessToken] = useState("");
   const [color, setColor] = useState(Math.floor(Math.random() * 100));
@@ -30,15 +31,21 @@ export default function App() {
       {accessToken ? <User /> : <Login />}
       {/* {accessToken ? <Timeline /> : null} */}
 
-      <div style={{ height: "80px" }}>
+      {/* <div style={{ height: "80px" }}>
         <div className="h-25"></div>
-      </div>
+      </div> */}
 
       <div className="container-fluid d-flex justify-content-center text-white">
         <div>
           {/* <Sidebar /> */}
         </div>
       </div>
+
+      <div style={{ height: "40px" }}>
+        <div className="h-25"></div> {/*Spacing between elems*/}
+      </div>
+
+      <History></History>
 
       <div style={{ height: "40px" }}>
         <div className="h-25"></div> {/*Spacing between elems*/}

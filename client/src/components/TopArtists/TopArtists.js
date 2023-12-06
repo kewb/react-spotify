@@ -62,6 +62,7 @@ export default function TopArtists() {
     <div id="top-artists">
       {" "}
       <div className="blurry-card">
+        <div className="title px-3">TOP ARTISTS</div>
         <Timeline className="" onChangeRange={changeRange}></Timeline>
         <div className="text-white">{topArtistsElem}</div>
       </div>
