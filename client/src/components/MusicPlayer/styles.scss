@@ -1,0 +1,138 @@
+
+#music-player {
+    position: fixed;
+    // display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease;
+    background-color: #05040440;
+  
+    backdrop-filter:blur(10px);
+    z-index: 1;
+    width: 100%;
+    height: 80px;
+    bottom: 0;
+  }
+  
+  
+   .show {
+    display: flex !important;
+  }
+  
+   .hide {
+    display: none !important;
+  }
+  
+  
+  
+    .music-info {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: left;
+      flex-wrap: wrap;
+    }
+  
+    .music-album img {
+      position: absolute;
+      border-radius: 5px;
+      bottom: 15px; 
+      left: 10%; 
+      width: 60px;
+      height: 60px; 
+    }
+  
+    .music-details {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-content: space-between;
+      left: 10%;
+      margin-left: 65px;
+      margin-bottom: 10px;
+    }
+  
+   
+  .music-artist {
+    color: aliceblue;
+    font-size: 1rem;
+  }
+  
+  .music-song {
+  color: aliceblue;
+  font-size: 1.5rem;
+  }
+  
+   .music-control {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      right: 10%;
+      justify-content: space-between;
+      cursor: pointer;
+      color: azure;
+      transition: 0.2s ease-out;
+    }
+  
+    .playpause-track, .prev-track, .next-track {
+      margin-right: 10px;
+    }
+  
+    .playpause-track:hover, .prev-track:hover, .next-track:hover {
+      transform: scale(1.06);
+      transition: 0.2s ease;
+    }
+  
+  .slider {
+    cursor: pointer;
+  }
+  
+  .seek_slider {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(166, 253, 132, 0.854);
+    backdrop-filter:blur(10px);
+    z-index: 3;
+    width: 0%;
+    height: 8px;
+    left: 10%;
+    bottom: 2%;
+    transition: all 1s ease;
+    box-shadow: 0px 0px 16px 0px rgba(118, 248, 42, 0.3);
+  
+  }
+  
+  .seek_slider_bg {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter:blur(10px);
+    z-index: 2;
+    width: 0%;
+    height: 8px;
+    left: 10%;
+    bottom: 1%;
+    transition: all 1s ease;
+    width: 80%;
+  }
+  
+  
+  @media only screen and (max-width: 768px) {
+    /* Adjust layout for smaller screens */
+    .music-info {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .music-artist,
+    .music-song {
+      margin: 5px 0;
+    }
+  }

@@ -13,6 +13,7 @@ import TopSongs from "./components/TopSongs/TopSongs";
 import TopArtists from "./components/TopArtists/TopArtists";
 import Timeline from "./components/Timeline/Timeline";
 import History from "./components/History/History";
+import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 export default function App() {
   const [accessToken, setAccessToken] = useState("");
   const [color, setColor] = useState(Math.floor(Math.random() * 100));
