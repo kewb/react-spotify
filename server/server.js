@@ -79,7 +79,7 @@ if (cluster.isMaster) {
     )
     .use(express.static(path.resolve(__dirname, "../client/build")));
 
-  app.get("/*", function (req, res) {
+  app.get("/", function (req, res) {
     res.render(path.resolve(__dirname, "../client/build/index.html"));
   });
 
