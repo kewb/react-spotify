@@ -9,6 +9,8 @@ export default function History() {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
+    let isMounted = true; // To prevent memory leaks
+
     const fetchData = async () => {
       try {
         const { data } = await getRecentlyPlayed();
@@ -21,28 +23,29 @@ export default function History() {
           preview_url: item.track.preview_url,
         }));
 
-        setHistory(updatedHistory);
+        if (isMounted) {
+          setHistory(updatedHistory);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
+        // Handle error or provide feedback to the user
       }
     };
 
     fetchData();
+
+    return () => {
+      isMounted = false; // Cleanup to prevent memory leaks
+    };
   }, []);
 
   const handleClick = (src, albumSrc, song, artist) => {
-    console.log(src);
-    console.log(albumSrc);
-    console.log(song);
-    console.log(artist);
-    console.log("////////////////\n");
-
-    // Reset the selected track to null before setting the new value
-    setSelectedTrack(null);
-
+    console.log("Clicked on:", song, "by", artist);
+    
     // Set the new selected track in the state
     setSelectedTrack({ src, albumSrc, song, artist });
   };
+  
 
   const historyElem = history.map((item, index) => (
     <div key={index} className="container">
@@ -69,22 +72,18 @@ export default function History() {
   ));
 
   return (
-    <div>
-      <div className="container-fluid d-flex justify-content-center">
+    <div className="container-fluid"> {}
+      <div className="d-flex justify-content-center">
         <div className="blurry-card">
           <div className="title px-3">Track history</div>
-
           <div>{historyElem}</div>
         </div>
       </div>
       {selectedTrack && (
-        <MusicPlayer
-          src={selectedTrack.src}
-          albumSrc={selectedTrack.albumSrc}
-          song={selectedTrack.song}
-          artist={selectedTrack.artist}
-        />
-      )}
+  <MusicPlayer
+    currentTrack={selectedTrack} // Pass the currentTrack object as a prop
+  />
+)}
     </div>
   );
 }

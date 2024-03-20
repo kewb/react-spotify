@@ -17,7 +17,6 @@ import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 export default function App() {
   const [accessToken, setAccessToken] = useState("");
   const [color, setColor] = useState(Math.floor(Math.random() * 100));
-
   useEffect(() => {
     setAccessToken(token);
   }, []);
@@ -26,7 +25,7 @@ export default function App() {
     <div className="">
       <MeshGradientRenderer
         className="gradient w-100 h-100 position-fixed"
-        colors={colors[color]}
+        colors={colors[1]}
       />
 
       {accessToken ? <User /> : <Login />}
