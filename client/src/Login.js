@@ -14,7 +14,7 @@ const SCOPES = [
   "user-read-currently-playing",
 ];
 
-const LOGIN_URI = "http://localhost:8888/login";
+const LOGIN_URI = "https://spoti-curr-b1cadc0a7b23.herokuapp.com/login";
 const AUTH_URL =
   "https://accounts.spotify.com/authorize?client_id=4ecb8bef7c0048c2b086bd189b368941&response_type=code&redirect_uri=http://localhost:3000/&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-read-currently-playing";
 
