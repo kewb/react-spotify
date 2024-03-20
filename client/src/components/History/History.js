@@ -4,7 +4,7 @@ import { getRecentlyPlayed } from "../../spotify";
 import { catchErrors } from "../../utils";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
 
-export default function History() {
+export default function History({onTrackSelect}) {
   const [selectedTrack, setSelectedTrack] = useState(null);
   const [history, setHistory] = useState([]);
 
@@ -28,7 +28,6 @@ export default function History() {
         }
       } catch (error) {
         console.error("Error fetching data:", error);
-        // Handle error or provide feedback to the user
       }
     };
 
@@ -40,10 +39,9 @@ export default function History() {
   }, []);
 
   const handleClick = (src, albumSrc, song, artist) => {
-    console.log("Clicked on:", song, "by", artist);
     
     // Set the new selected track in the state
-    setSelectedTrack({ src, albumSrc, song, artist });
+    onTrackSelect({ src, albumSrc, song, artist });
   };
   
 
@@ -79,11 +77,6 @@ export default function History() {
           <div>{historyElem}</div>
         </div>
       </div>
-      {selectedTrack && (
-  <MusicPlayer
-    currentTrack={selectedTrack} // Pass the currentTrack object as a prop
-  />
-)}
     </div>
   );
 }

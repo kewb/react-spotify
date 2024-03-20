@@ -14,12 +14,20 @@ import TopArtists from "./components/TopArtists/TopArtists";
 import Timeline from "./components/Timeline/Timeline";
 import History from "./components/History/History";
 import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
+
 export default function App() {
   const [accessToken, setAccessToken] = useState("");
   const [color, setColor] = useState(Math.floor(Math.random() * 100));
+  const [selectedTrack, setSelectedTrack] = useState(null); // State for currently selected track
+
   useEffect(() => {
     setAccessToken(token);
   }, []);
+
+  // Function to handle track selection
+  const handleTrackSelect = (track) => {
+    setSelectedTrack(track);
+  };
 
   return (
     <div className="">
@@ -29,15 +37,10 @@ export default function App() {
       />
 
       {accessToken ? <User /> : <Login />}
-      {/* {accessToken ? <Timeline /> : null} */}
 
-      {/* <div style={{ height: "80px" }}>
-        <div className="h-25"></div>
-      </div> */}
-
-      <div className="container-fluid d-flex justify-content-center text-white">
+      <div className="container-fluid d-flex justify-content-center text-white mt-5">
         <div>
-          {/* <Sidebar /> */}
+        <Sidebar onTrackSelect={handleTrackSelect} />
         </div>
       </div>
 
@@ -45,14 +48,16 @@ export default function App() {
         <div className="h-25"></div> {/*Spacing between elems*/}
       </div>
 
-      <History></History>
+      <History onTrackSelect={handleTrackSelect}/>
 
       <div style={{ height: "40px" }}>
         <div className="h-25"></div> {/*Spacing between elems*/}
       </div>
 
       <div className="container-fluid d-flex flex-column flex-sm-row justify-content-center ">
-        {accessToken ? <TopSongs /> : null}
+        {accessToken ? (
+          <TopSongs onTrackSelect={handleTrackSelect} />
+        ) : null}
         <div style={{ width: "30px" }}>
           <div className="w-25"></div> {/*Spacing between elems*/}
         </div>
@@ -63,10 +68,6 @@ export default function App() {
         <div className="h-25"></div> {/*Spacing between elems*/}
       </div>
 
-      <div className="container-fluid d-flex justify-content-center">
-        {/* {accessToken ? <TopArtists /> : null} */}
-      </div>
-
       <div className="position-fixed bottom-0 end-0 p-3" id="color-toggle">
         <button
           name="color"
@@ -75,6 +76,11 @@ export default function App() {
           Random Colors
         </button>
       </div>
+
+      {/* Render MusicPlayer with selectedTrack if available */}
+      {selectedTrack && (
+        <MusicPlayer currentTrack={selectedTrack} />
+      )}
     </div>
   );
 }

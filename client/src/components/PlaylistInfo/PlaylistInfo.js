@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.scss"; // Import the CSS file
 import { formatDurationForHumans } from "../../utils";
 
-const PlaylistInfo = ({ playlist }) => {
+const PlaylistInfo = ({ playlist, onTrackSelect }) => {
   if (!playlist) {
     return <p>Select a playlist to view details.</p>;
   }
@@ -20,12 +20,29 @@ const PlaylistInfo = ({ playlist }) => {
     };
   });
 
+  const handleClick = (src, albumSrc, song, artist) => {
+    onTrackSelect({ src, albumSrc, song, artist });
+  };
+
   const playlistsData = songs.map((song, index) => (
     <div key={index} className="container">
       <div className="clickable-song playListSongs row">
         <div className="col-auto">
           <div>
-            <img src={song.thumbnail} alt={song.name} className="img-fluid" />
+            <img
+              src={song.thumbnail}
+              alt={song.name}
+              className="img-fluid"
+              onClick={() =>
+                handleClick(
+                  song.preview_url,
+                  song.thumbnail,
+                  song.name,
+                  song.artist
+                )
+              }
+              style={{ cursor: "pointer" }}
+            />
           </div>
         </div>
         <div className="col d-block">

@@ -8,7 +8,7 @@ import {
 } from "../../spotify";
 import { catchErrors } from "../../utils";
 
-export default function TopSongs() {
+export default function TopSongs({ onTrackSelect }) {
   const [topTracks, setTopTracks] = useState(null);
   const [activeRange, setActiveRange] = useState("long");
 
@@ -41,6 +41,10 @@ export default function TopSongs() {
     setActiveRange(range);
   };
 
+  const handleClick = (src, albumSrc, song, artist) => {
+    onTrackSelect({ src, albumSrc, song, artist });
+  };
+
   const topTracksElem = topTracks
     ? topTracks.map((item, index) => (
         <div className="d-flex align-items-center" key={item.id}>
@@ -51,9 +55,20 @@ export default function TopSongs() {
             className="top-song-img m-1 h-auto rounded"
             src={item.album.images[0].url}
             alt={item.name}
+            onClick={() =>
+              handleClick(
+                item.preview_url,
+                item.album.images[1].url,
+                item.name,
+                item.artists
+                  .map((artist, artistIndex) => artist.name)
+                  .join(" / ")
+              )
+            }
+            style={{ cursor: "pointer" }}
           />
 
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column text-white">
             <div>{item.name}</div>
             <div className="d-flex flex-row gap-1">
               {item.artists.map((artist, artistIndex) => (

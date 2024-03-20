@@ -43,7 +43,7 @@ export default function TopArtists() {
   const topArtistsElem = topArtists ? (
     topArtists.map((item, index) => (
       <div className="d-flex align-items-center" key={item.id}>
-        <div>{index + 1}</div>
+        <div className="index">{index + 1}</div>
         <img
           className="artist-img m-2"
           src={item.images[1].url}
