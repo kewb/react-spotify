@@ -94,7 +94,7 @@ if (cluster.isMaster) {
     res.redirect(
       `https://accounts.spotify.com/authorize?${querystring.stringify({
         response_type: "code",
-        client_id: CLIENT_ID,
+        client_id: "4ecb8bef7c0048c2b086bd189b368941",
         scope: scope,
         redirect_uri: REDIRECT_URI,
         state: state,
